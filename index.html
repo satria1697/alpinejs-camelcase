@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+</head>
+<body>
+    <div x-data="data" class="flex flex-col space-y-4 w-48 m-10">
+        <input class="border-2 border-black rounded-md" @input="(event) => camelCase(event.target.value)">
+        <span @click="() => copyData()" x-text="output"></span>
+    </div>
+</body>
+
+<script>
+    const data = {
+        camelCase(str) {
+            this.output = _.camelCase(str);
+        },
+        output: '',
+        copyData() {
+            navigator.clipboard.writeText(this.output)
+        }
+    }
+</script>
+</html>
