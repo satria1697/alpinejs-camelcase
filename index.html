@@ -20,8 +20,8 @@
     const data = {
         toCamelCase(str) {
             this.output = _.camelCase(str);
-            this.xpathNormal = `//*[@id='${this.output}']`;
-            this.xpathDropdown = `//*[@aria-owns='${this.output}_listbox']`;
+            this.xpathNormal = `//*[@id='${str}']`;
+            this.xpathDropdown = `//*[@aria-owns='${str}_listbox']`;
         },
         output: '',
         xpathNormal: '',
