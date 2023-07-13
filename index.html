@@ -8,18 +8,24 @@
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
 </head>
 <body>
-    <div x-data="data" class="flex flex-col space-y-4 w-48 m-10">
-        <input class="border-2 border-black rounded-md" @input="(event) => camelCase(event.target.value)">
+    <div x-data="data" class="flex flex-col space-y-4 m-10">
+        <input class="border-2 border-black rounded-md w-48" @input="(event) => toCamelCase(event.target.value)">
         <span @click="() => copyData()" x-text="output"></span>
+        <span @click="() => copyData()" x-text="xpathNormal"></span>
+        <span @click="() => copyData()" x-text="xpathDropdown"></span>
     </div>
 </body>
 
 <script>
     const data = {
-        camelCase(str) {
+        toCamelCase(str) {
             this.output = _.camelCase(str);
+            this.xpathNormal = `//*[@id='${this.output}']`;
+            this.xpathDropdown = `//*[@aria-owns='${this.output}_listbox']`;
         },
         output: '',
+        xpathNormal: '',
+        xpathDropdown: '',
         copyData() {
             navigator.clipboard.writeText(this.output)
         }
