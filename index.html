@@ -10,9 +10,9 @@
 <body>
     <div x-data="data" class="flex flex-col space-y-4 m-10">
         <input class="border-2 border-black rounded-md w-48" @input="(event) => toCamelCase(event.target.value)">
-        <span @click="() => copyData()" x-text="output"></span>
-        <span @click="() => copyData()" x-text="xpathNormal"></span>
-        <span @click="() => copyData()" x-text="xpathDropdown"></span>
+        <span @click="() => copyData('output')" x-text="output"></span>
+        <span @click="() => copyData('xpathNormal')" x-text="xpathNormal"></span>
+        <span @click="() => copyData('xpathDropdown')" x-text="xpathDropdown"></span>
     </div>
 </body>
 
@@ -26,8 +26,8 @@
         output: '',
         xpathNormal: '',
         xpathDropdown: '',
-        copyData() {
-            navigator.clipboard.writeText(this.output)
+        copyData(selector) {
+            navigator.clipboard.writeText(this[selector])
         }
     }
 </script>
